@@ -314,6 +314,7 @@ const Alphabet = () => {
   });
 
   const handleTermClick = (term) => {
+    console.log('Opening modal for term:', term.term);
     setSelectedTerm(term);
   };
 
@@ -399,7 +400,6 @@ const Alphabet = () => {
                 key={`${term.letter}-${activeLetter}-${searchTerm}-${index}`}
                 className="term-card term-card-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => handleTermClick(term)}
               >
                 {term.image && (
                   <div className="term-image">
@@ -411,8 +411,8 @@ const Alphabet = () => {
                 <p>{t(term.definition)}</p>
                 <button 
                   className="btn btn-primary btn-small"
-                  onClick={(e) => {
-                    e.stopPropagation();
+                  onClick={() => {
+                    console.log('Button clicked for term:', term.term);
                     handleTermClick(term);
                   }}
                 >
@@ -668,6 +668,7 @@ const Alphabet = () => {
 
       {/* Modal */}
       {selectedTerm && (
+        console.log('Rendering modal for:', selectedTerm.term),
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>×</button>
