@@ -12,7 +12,7 @@ import Contacts from './pages/Contacts/Contacts';
 
 function App() {
   return (
-    <BrowserRouter basename="/psychology">
+    <BrowserRouter>
       <LanguageProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
