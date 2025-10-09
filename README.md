@@ -36,6 +36,21 @@ React-приложение для центра психологической п
 - CSS3 (CSS Variables, Grid, Flexbox)
 - Google Fonts (Inter)
 
+## 🌐 Деплой
+
+Сайт автоматически деплоится на GitHub Pages при каждом пуше в ветку `main`.
+
+**Live Demo:** https://anubizze.github.io/psychology
+
+### Автоматический деплой через GitHub Actions
+
+Проект настроен для автоматического деплоя при каждом коммите в `main` ветку:
+- Сборка происходит в GitHub Actions
+- Деплой на GitHub Pages
+- Сайт обновляется автоматически
+
+Подробное руководство по деплою: [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+
 ## 📦 Установка и запуск
 
 ### Предварительные требования
