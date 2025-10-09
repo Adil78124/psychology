@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
@@ -12,20 +12,22 @@ import Contacts from './pages/Contacts/Contacts';
 
 function App() {
   return (
-    <LanguageProvider>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="psychologists" element={<Psychologists />} />
-          <Route path="alphabet" element={<Alphabet />} />
-          <Route path="students" element={<Students />} />
-          <Route path="survey" element={<Survey />} />
-          <Route path="news" element={<News />} />
-          <Route path="news/:id" element={<NewsDetail />} />
-          <Route path="contacts" element={<Contacts />} />
-        </Route>
-      </Routes>
-    </LanguageProvider>
+    <BrowserRouter basename="/psychology">
+      <LanguageProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="psychologists" element={<Psychologists />} />
+            <Route path="alphabet" element={<Alphabet />} />
+            <Route path="students" element={<Students />} />
+            <Route path="survey" element={<Survey />} />
+            <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<NewsDetail />} />
+            <Route path="contacts" element={<Contacts />} />
+          </Route>
+        </Routes>
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 
