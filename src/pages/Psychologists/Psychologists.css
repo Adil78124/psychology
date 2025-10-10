@@ -35,54 +35,6 @@
   opacity: 0.5;
 }
 
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--gray-medium);
-  background: var(--white);
-  color: var(--text-dark);
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(107, 163, 214, 0.1), transparent);
-  transition: left 0.3s;
-}
-
-.filter-btn:hover::before {
-  left: 100%;
-}
-
-.filter-btn:hover {
-  border-color: var(--primary-blue);
-  color: var(--primary-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(107, 163, 214, 0.2);
-}
-
-.filter-btn.active {
-  background-color: var(--primary-blue);
-  color: var(--white);
-  border-color: var(--primary-blue);
-}
 
 .psychologists-grid {
   display: grid;
@@ -129,28 +81,79 @@
 
 .psychologist-image {
   width: 100%;
-  height: 300px;
+  height: 400px;
   overflow: hidden;
   background-color: var(--gray-light);
   position: relative;
-  z-index: 2; /* Выше чем ::before элемент */
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .psychologist-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  display: block;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .psychologist-card:hover .psychologist-image img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
-.psychologist-image img {
+/* Специальные стили для конкретных фотографий */
+.psychologist-image img[src*="Рахматоллаева_Амина_Руслановна"] {
+  object-position: center center;
+  object-fit: cover;
+}
+
+.psychologist-image img[src*="Секрекова_Жадра_Сарсенбековна"] {
+  object-position: center top;
+  object-fit: cover;
+}
+
+/* Placeholder для психологов без фото */
+.psychologist-placeholder {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+}
+
+.placeholder-initials {
+  width: 150px;
+  height: 150px;
+  background-color: var(--white);
+  color: var(--primary-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+}
+
+.psychologist-card:hover .placeholder-initials {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.placeholder-text {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  opacity: 0.9;
 }
 
 .psychologist-info {
@@ -241,6 +244,16 @@ details p {
 
   .filter-btn {
     width: 100%;
+  }
+
+  .placeholder-initials {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
+
+  .placeholder-text {
+    font-size: 0.9rem;
   }
 }
 

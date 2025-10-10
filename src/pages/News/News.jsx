@@ -6,7 +6,6 @@ import './News.css';
 const News = () => {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
-  const [email, setEmail] = useState('');
 
   const newsData = [
     {
@@ -21,7 +20,7 @@ const News = () => {
         ru: 'Приглашаем всех студентов на Неделю психологии! Вас ждут квесты, мастер-классы, тренинги, психологический кинотеатр и многое другое. Участвуйте, развивайтесь, получайте призы!',
         kz: 'Барлық студенттерді Психология аптасына шақырамыз! Сізді квесттер, шеберлік сабақтары, тренингтер, психологиялық кинотеатр және т.б. күтеді. Қатысыңыз, дамыңыз, сыйлықтар алыңыз!',
       },
-      image: '/images/news-featured.jpg',
+      image: '/images/Новость Неделя психологии.jpeg',
       featured: true,
       link: null,
     },
@@ -37,7 +36,7 @@ const News = () => {
         ru: '16 сентября для наших первокурсников гуманитарного факультета прошел адаптационный тренинг в формате квеста "Приключение первокурсника". Студенты познакомились с факультетом и завели новые знакомства.',
         kz: '16 қыркүйекте гуманитарлық факультет бірінші курс студенттері үшін "Бірінші курс студентінің оқиғасы" квесті форматында бейімдеу тренингі өтті. Студенттер факультетпен танысты және жаңа танысты.',
       },
-      image: '/images/news-1.jpg',
+      image: '/images/Новость Адаптационный тренинг для студентов 1 курса.jpeg',
       link: 'https://www.instagram.com/share/BBv0goq2XR',
     },
     {
@@ -52,7 +51,7 @@ const News = () => {
         ru: 'На кафедре Педагогики и психологии прошёл тренинг для студентов первого курса под руководством преподавателя Базарбаевой Махаббат Саяткызы. Мероприятие было направлено на сплочение группы и развитие коммуникативных навыков.',
         kz: 'Педагогика және психология кафедрасында Базарбаева Махаббат Саяткызының жетекшілігімен бірінші курс студенттеріне арналған тренинг өтті. Іс-шара топты біріктіруге және коммуникативтік дағдыларды дамытуға бағытталды.',
       },
-      image: '/images/news-2.jpg',
+      image: '/images/Новость Тренинг для первокурсников кафедры Педагогики и психологии.jpeg',
       link: 'https://www.instagram.com/share/BAPf82AWCw',
     },
     {
@@ -108,17 +107,6 @@ const News = () => {
 
   const featuredNews = newsData.find((item) => item.featured);
   const regularNews = filteredNews.filter((item) => !item.featured);
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    alert(
-      t({
-        ru: `Спасибо за подписку! Письма будут приходить на ${email}`,
-        kz: `Жазылғаныңыз үшін рахмет! Хаттар ${email} келеді`,
-      })
-    );
-    setEmail('');
-  };
 
   const getCategoryBadge = (category) => {
     const badges = {
@@ -238,26 +226,6 @@ const News = () => {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="newsletter">
-        <div className="container">
-          <h2>{t({ ru: 'Подпишитесь на рассылку', kz: 'Таратылымға жазылыңыз' })}</h2>
-          <p>{t({ ru: 'Получайте новости и полезные материалы на почту', kz: 'Жаңалықтар мен пайдалы материалдарды поштаға алыңыз' })}</p>
-          <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-            <input
-              type="email"
-              placeholder={t({ ru: 'Ваш email', kz: 'Сіздің email' })}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="btn btn-primary">
-              {t({ ru: 'Подписаться', kz: 'Жазылу' })}
-            </button>
-          </form>
         </div>
       </section>
     </div>

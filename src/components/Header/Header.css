@@ -14,11 +14,21 @@
   padding: var(--spacing-md) 0;
 }
 
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo h1 {
   font-size: 2rem;
   font-weight: var(--font-weight-bold);
   color: var(--primary-blue);
   margin-bottom: 0.25rem;
+  transition: var(--transition);
+}
+
+.logo h1:hover {
+  color: var(--primary-blue-hover, #5a8bb8);
 }
 
 .logo-subtitle {
@@ -36,7 +46,9 @@
 .nav-list {
   display: flex;
   list-style: none;
-  gap: var(--spacing-md);
+  gap: 0;
+  row-gap: 1.5rem; 
+  column-gap: 0; 
   align-items: center;
 }
 

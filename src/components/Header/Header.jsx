@@ -35,7 +35,9 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <div className="logo">
-            <h1>Sezim</h1>
+            <Link to="/">
+              <h1>Sezim</h1>
+            </Link>
           </div>
           <nav className="nav">
             <ul className={`nav-list ${mobileMenuOpen ? 'active' : ''}`}>

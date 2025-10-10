@@ -6,7 +6,6 @@ import './Psychologists.css';
 const Psychologists = () => {
   const { t, language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeFilter, setActiveFilter] = useState('all');
 
 
   const psychologists = [
@@ -34,12 +33,14 @@ const Psychologists = () => {
         ru: 'Работаю в подходе терапии принятия и ответственности (АСТ), помогаю людям справляться с тревогой, стрессом, выгоранием.',
         kz: 'Қабылдау және жауапкершілік терапиясы (ACT) тәсілімен жұмыс істеймін, адамдарға мазасыздықпен, стресспен, өртенумен күресуге көмектесемін.',
       },
-      image: '/images/psychologist-7.jpg',
+      image: '/images/Секрекова_Жадра_Сарсенбековна.jpg',
     },
     {
       id: 2,
       category: 'consultant',
       name: { ru: 'Нүркенов Ерсін Рысқалиұлы', kz: 'Нүркенов Ерсін Рысқалиұлы' },
+      initials: 'НЕ',
+      hasPhoto: false,
       position: { ru: 'Психолог', kz: 'Психолог' },
       phone: '+77772852133',
       email: '',
@@ -86,7 +87,7 @@ const Psychologists = () => {
         ru: 'Создаю тёплую и доверительную атмосферу, в которой каждый может открыто говорить о своих переживаниях.',
         kz: 'Әрқайсысы өз өткелдері туралы ашық сөйлесе алатын жылы және сенімді атмосфера жасаймын.',
       },
-      image: '/images/psychologist-9.jpg',
+      image: '/images/Рахматоллаева_Амина_Руслановна.jpg',
     },
   ];
 
@@ -95,9 +96,7 @@ const Psychologists = () => {
       t(psychologist.name).toLowerCase().includes(searchTerm.toLowerCase()) ||
       t(psychologist.description).toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesFilter = activeFilter === 'all' || psychologist.category === activeFilter;
-
-    return matchesSearch && matchesFilter;
+    return matchesSearch;
   });
 
   const handleAppointment = (psychologistName) => {
@@ -155,32 +154,6 @@ const Psychologists = () => {
               placeholder={t({ ru: 'Поиск по имени или специализации...', kz: 'Аты немесе мамандандыру бойынша іздеу...' })}
             />
           </div>
-          <div className="filter-buttons">
-            <button
-              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('all')}
-            >
-              {t({ ru: 'Все', kz: 'Барлығы' })}
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === 'clinical' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('clinical')}
-            >
-              {t({ ru: 'Клинический психолог', kz: 'Клиникалық психолог' })}
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === 'educational' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('educational')}
-            >
-              {t({ ru: 'Педагог-психолог', kz: 'Педагог-психолог' })}
-            </button>
-            <button
-              className={`filter-btn ${activeFilter === 'consultant' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('consultant')}
-            >
-              {t({ ru: 'Психолог-консультант', kz: 'Психолог-кеңесші' })}
-            </button>
-          </div>
         </div>
       </section>
 
@@ -191,7 +164,14 @@ const Psychologists = () => {
             {filteredPsychologists.map((psychologist) => (
               <div key={psychologist.id} className="psychologist-card">
                 <div className="psychologist-image">
-                  <img src={psychologist.image} alt={t(psychologist.name)} />
+                  {psychologist.hasPhoto !== false ? (
+                    <img src={psychologist.image} alt={t(psychologist.name)} />
+                  ) : (
+                    <div className="psychologist-placeholder">
+                      <div className="placeholder-initials">{psychologist.initials || 'НЕ'}</div>
+                      <div className="placeholder-text">{t({ ru: 'Фото скоро появится', kz: 'Фото жақында пайда болады' })}</div>
+                    </div>
+                  )}
                 </div>
                 <div className="psychologist-info">
                   <h3>{t(psychologist.name)}</h3>
